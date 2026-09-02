@@ -11,39 +11,24 @@ package com.st10470759.chatapp_part1;
 public class Registration {
 
     public static void main(String[] args) {
-        
-    
-    // Create a Login object so we can test its methods
-    Login login = new Login();
+          Login login = new Login();
 
-    // Test checkUserName with a valid username
-    System.out.println("Testing checkUserName with 'kyl_1':");
-    System.out.println(login.checkUserName("kyl_1"));  // should print true
-
-    // Test checkUserName with an invalid username
-    System.out.println("Testing checkUserName with 'kyle!!!!!!!':");
-    System.out.println(login.checkUserName("kyle!!!!!!!"));  // should print false
-
-    // Test checkPasswordComplexity with a valid password
-    System.out.println("Testing checkPasswordComplexity with 'Ch&&sec@ke99!':");
-    System.out.println(login.checkPasswordComplexity("Ch&&sec@ke99!"));  // should print true
-
-    // Test checkPasswordComplexity with an invalid password
-    System.out.println("Testing checkPasswordComplexity with 'password':");
-    System.out.println(login.checkPasswordComplexity("password"));  // should print false
-
-    // Test checkCellPhoneNumber with a valid number
-    System.out.println("Testing checkCellPhoneNumber with '+27838968976':");
-    System.out.println(login.checkCellPhoneNumber("+27838968976"));  // should print true
-
-    // Test checkCellPhoneNumber with an invalid number
-    System.out.println("Testing checkCellPhoneNumber with '08966553':");
-    System.out.println(login.checkCellPhoneNumber("08966553"));  // should print false
-
-    // Test registerUser with valid details
-    System.out.println("Testing registerUser:");
+    // Register a user first so we have something to log in with
+    System.out.println("Registering user:");
     System.out.println(login.registerUser("kyl_1", "Ch&&sec@ke99!", "+27838968976", "Kyle", "Smith"));
 
-}
+    // Test loginUser with correct credentials
+    System.out.println("Testing loginUser with correct details:");
+    boolean loginResult1 = login.loginUser("kyl_1", "Ch&&sec@ke99!");
+    System.out.println(loginResult1);  // should print true
+    System.out.println(login.returnLoginStatus(loginResult1));  // should print welcome message
+
+    // Test loginUser with incorrect credentials
+    System.out.println("Testing loginUser with incorrect details:");
+    boolean loginResult2 = login.loginUser("wrong", "wrongpass");
+    System.out.println(loginResult2);  // should print false
+    System.out.println(login.returnLoginStatus(loginResult2));  // should print failure message
+
+}  
     }
 

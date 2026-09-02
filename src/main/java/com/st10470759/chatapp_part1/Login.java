@@ -75,6 +75,20 @@ public class Login {
     return "Username successfully captured.\nPassword successfully captured.\nRegistration successful.";
     }
     
+    //Compares the entered username and password agaist the stored details
+    //Return true if they match and false otherwise
+    public boolean loginUser(String enteredUsername, String enteredPassword){
+        return enteredUsername.equals(this.username) && enteredPassword.equals(this.password);
+    }
+    
+    //Return the correct welcome message if log in succeeded, or a failure message if not
+    public String returnLoginStatus(boolean loginSuccess){
+        if(loginSuccess){
+           return "Welcome " + this.firstName + ", " + this.lastName + " it is great to see you again."; 
+        } else{
+            return "Username or password incorrect. please try again.";
+        }
+    }
     
     
 }
