@@ -4,6 +4,8 @@
 
 package com.st10470759.chatapp_part1;
 
+import java.util.Scanner;
+
 /**
  *
  * @author rnndo
@@ -11,24 +13,49 @@ package com.st10470759.chatapp_part1;
 public class Registration {
 
     public static void main(String[] args) {
-          Login login = new Login();
-
-    // Register a user first so we have something to log in with
-    System.out.println("Registering user:");
-    System.out.println(login.registerUser("kyl_1", "Ch&&sec@ke99!", "+27838968976", "Kyle", "Smith"));
-
-    // Test loginUser with correct credentials
-    System.out.println("Testing loginUser with correct details:");
-    boolean loginResult1 = login.loginUser("kyl_1", "Ch&&sec@ke99!");
-    System.out.println(loginResult1);  // should print true
-    System.out.println(login.returnLoginStatus(loginResult1));  // should print welcome message
-
-    // Test loginUser with incorrect credentials
-    System.out.println("Testing loginUser with incorrect details:");
-    boolean loginResult2 = login.loginUser("wrong", "wrongpass");
-    System.out.println(loginResult2);  // should print false
-    System.out.println(login.returnLoginStatus(loginResult2));  // should print failure message
-
-}  
+        
+        Scanner scan = new Scanner(System.in);
+        Login login = new Login();
+        
+        //Ask the user for their registration details
+        System.out.println("Please enter a username:");
+        String username = scan.nextLine();
+        
+        System.out.println("Please enter a password:");
+        String password = scan.nextLine();
+        
+        System.out.println("Please enter a South African cell phone number (e.g. +27831234567):");
+        String cellPhoneNumber = scan.nextLine();
+        
+        System.out.println("Please enter your first name:");
+        String firstName = scan.nextLine();
+        
+        System.out.println("Please enter your last name:");
+        String lastName = scan.nextLine();
+        
+        // Try to register the user with the details they entered above
+        String registrationMessage = login.registerUser(username, password, cellPhoneNumber, firstName, lastName);
+        System.out.println(registrationMessage);
+        
+        //Only continue if registration actually succeeded
+        boolean registrationSuccessful = login.checkUserName(username) && login.checkPasswordComplexity(password);
+        
+        if (registrationSuccessful){
+            System.out.println("\n Now please log in.");
+            
+            System.out.println("Enter your username:");
+            String loginUsername = scan.nextLine();
+            
+            System.out.println("Enter your password:");
+            String loginPassword = scan.nextLine();
+            
+            boolean loginSuccess = login.loginUser(loginUsername, loginPassword);
+            String loginStatusMessage = login.returnLoginStatus(loginSuccess);
+            System.out.println(loginStatusMessage);
+        }
+        
+        scan.close();
+        
+        
     }
-
+}
