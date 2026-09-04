@@ -52,7 +52,7 @@ public class Login {
     if (cellPhoneNumber == null) {
         return false;
     }
-    String regex = "^\\+27[0-9]{9}$";
+    String regex = "^\\+27[0-9]{9,10}$";
     return cellPhoneNumber.matches(regex);
     }
     // Validates the username and password, stores the user's details if both are valid,
