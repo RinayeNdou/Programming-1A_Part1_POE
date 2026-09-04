@@ -64,6 +64,9 @@ public class Login {
     if (!checkPasswordComplexity(password)) {
         return "Password is not correctly formatted; please ensure that the password contains at least eight characters, a capital letter, a number, and a special character.";
     }
+    if (!checkCellPhoneNumber(cellPhoneNumber)){
+        return "Cell number is incorrectly formatted or does not contain an international code; please correct the number and try again.";
+    }
 
     // Both checks passed, so store the user's details
     this.username = username;

@@ -38,7 +38,7 @@ public class Registration {
         System.out.println(registrationMessage);
         
         //Only continue if registration actually succeeded
-        boolean registrationSuccessful = login.checkUserName(username) && login.checkPasswordComplexity(password);
+        boolean registrationSuccessful = login.checkUserName(username) && login.checkPasswordComplexity(password) && login.checkCellPhoneNumber(cellPhoneNumber);
         
         if (registrationSuccessful){
             System.out.println("\n Now please log in.");
