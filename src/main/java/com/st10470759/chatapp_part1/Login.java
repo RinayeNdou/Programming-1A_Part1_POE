@@ -75,7 +75,7 @@ public class Login {
     this.firstName = firstName;
     this.lastName = lastName;
 
-    return "Username successfully captured.\nPassword successfully captured.\nRegistration successful.";
+    return "Username successfully captured.\nPassword successfully captured.\nCell number successfully captured.\nRegistration successful.";
     }
     
     //Compares the entered username and password agaist the stored details
