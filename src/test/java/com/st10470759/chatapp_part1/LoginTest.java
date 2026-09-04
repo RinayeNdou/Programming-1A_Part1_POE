@@ -77,3 +77,59 @@ public class LoginTest {
         System.out.println("registerUser - invalid username");
         String expResult = "Username is not correctly formatted; please ensure that your username contains an underscore and is no more than five characters in length.";
         String result = instance.registerUser("kyle!!!!!!!", "Ch&&sec@ke99!", "+27838968976", "Kyle", "Smith");
+        assertEquals(expResult, result);
+    }
+
+    // Test that registering with an invalid password returns the correct failure message
+    @Test
+    public void testRegisterUser_PasswordInvalid() {
+        System.out.println("registerUser - invalid password");
+        String expResult = "Password is not correctly formatted; please ensure that the password contains at least eight characters, a capital letter, a number, and a special character.";
+        String result = instance.registerUser("kyl_1", "password", "+27838968976", "Kyle", "Smith");
+        assertEquals(expResult, result);
+    }
+
+    // Test that registering with an invalid cell number returns the correct failure message
+    @Test
+    public void testRegisterUser_CellPhoneInvalid() {
+        System.out.println("registerUser - invalid cell phone number");
+        String expResult = "Cell number is incorrectly formatted or does not contain an international code; please correct the number and try again.";
+        String result = instance.registerUser("kyl_1", "Ch&&sec@ke99!", "08966553", "Kyle", "Smith");
+        assertEquals(expResult, result);
+    }
+
+    // Test that logging in with correct credentials returns true
+    @Test
+    public void testLoginUser_Success() {
+        System.out.println("loginUser - success");
+        boolean result = instance.loginUser("kyl_1", "Ch&&sec@ke99!");
+        assertTrue(result);
+    }
+
+    // Test that logging in with incorrect credentials returns false
+    @Test
+    public void testLoginUser_Failure() {
+        System.out.println("loginUser - failure");
+        boolean result = instance.loginUser("wrong", "wrongpass");
+        assertFalse(result);
+    }
+
+    // Test that a successful login returns the correct welcome message
+    @Test
+    public void testReturnLoginStatus_Success() {
+        System.out.println("returnLoginStatus - success");
+        String expResult = "Welcome Kyle, Smith it is great to see you again.";
+        String result = instance.returnLoginStatus(true);
+        assertEquals(expResult, result);
+    }
+
+    // Test that a failed login returns the correct failure message
+    @Test
+    public void testReturnLoginStatus_Failure() {
+        System.out.println("returnLoginStatus - failure");
+        String expResult = "Username or password incorrect, please try again.";
+        String result = instance.returnLoginStatus(false);
+        assertEquals(expResult, result);
+    }
+
+}
